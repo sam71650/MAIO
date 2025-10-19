@@ -9,7 +9,7 @@ FROM python:3.11-slim
 WORKDIR /app
 
 # Install dependencies
-RUN pip install --no-cache-dir fastapi uvicorn scikit-learn joblib pydantic numpy
+RUN pip install --no-cache-dir fastapi uvicorn scikit-learn joblib pydantic numpy pandas
 
 # Copy model folder and API code
 COPY baseline.py baseline.py
