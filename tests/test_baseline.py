@@ -2,12 +2,12 @@
 
 import sys
 from pathlib import Path
-
-# Add project root to sys.path so baseline can be imported
-sys.path.append(str(Path(__file__).resolve().parent.parent))
-
 import joblib
 import numpy as np
+
+# Add project root to sys.path so baseline can be imported
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+
 from baseline import MODEL_PATH, SCALER_PATH
 
 
