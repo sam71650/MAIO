@@ -3,6 +3,7 @@ from pydantic import BaseModel
 import joblib
 import numpy as np
 
+
 # --------------------------
 # Config
 # --------------------------
@@ -10,9 +11,11 @@ MODEL_PATH = "model/baseline_model.joblib"
 SCALER_PATH = "model/scaler.joblib"
 MODEL_VERSION = "v0.1"
 
+
 # Load trained model and scaler
 model = joblib.load(MODEL_PATH)
 scaler = joblib.load(SCALER_PATH)
+
 
 # --------------------------
 # Input schema
@@ -28,6 +31,7 @@ class PatientFeatures(BaseModel):
     s4: float
     s5: float
     s6: float
+
 
 # --------------------------
 # FastAPI app
