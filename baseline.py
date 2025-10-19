@@ -1,6 +1,7 @@
 import joblib
 import json
 from pathlib import Path
+import numpy as np
 from sklearn.datasets import load_diabetes
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
@@ -46,7 +47,10 @@ model.fit(X_train_scaled, y_train)
 # Evaluate
 # --------------------------
 y_pred = model.predict(X_test_scaled)
-rmse = mean_squared_error(y_test, y_pred, squared=False)
+
+# Compute RMSE in a compatible way for all scikit-learn versions
+mse = mean_squared_error(y_test, y_pred)
+rmse = float(np.sqrt(mse))
 print(f"Test RMSE: {rmse:.3f}")
 
 # Save metrics
