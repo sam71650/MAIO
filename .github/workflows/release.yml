@@ -1,5 +1,9 @@
 name: Release Docker Image
 
+permissions:
+  contents: read
+  packages: write
+
 on:
   push:
     tags:
@@ -27,13 +31,13 @@ jobs:
         run: |
           docker build -t ghcr.io/${{ github.repository }}:${GITHUB_REF_NAME} .
 
-      - name: Push Docker image
+      - name: Log in to GHCR
         uses: docker/login-action@v2
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Push image
+      - name: Push Docker image
         run: |
           docker push ghcr.io/${{ github.repository }}:${GITHUB_REF_NAME}
