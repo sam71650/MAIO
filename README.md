@@ -87,12 +87,12 @@ docker run -d -p 8012:8000 --name maio_v2 ghcr.io/sam71650/maio:v0.2.0
 docker ps
 ```
 
-Health check
+✅ Health check
 ```bash
 curl http://localhost:8000/health
 ```
 
-Prediction
+✅ Prediction
 ```bash
 curl -s -X POST http://localhost:8000/predict -H "Content-Type: application/json" ^
  -d "{\"age\":0.02,\"sex\":-0.044,\"bmi\":0.06,\"bp\":-0.03,\"s1\":-0.02,\"s2\":0.03,\"s3\":-0.02,\"s4\":0.02,\"s5\":0.02,\"s6\":-0.001}"
@@ -109,11 +109,12 @@ Version	Docker Image
 v0.1	ghcr.io/sam71650/maio:v0.1.0
 v0.2	ghcr.io/sam71650/maio:v0.2.0
 
+✅ Pipeline and Tests 
+This project uses **Pull Request (PR)** and **Pull Integration (PI)** workflows for collaborative development and automated CI/CD.  
+It includes a **Release Workflow** for building and publishing Docker images.  
+Comprehensive **Unit Tests** and **Smoke Tests** ensure stability and reliability before deployment.  
 
-Conclusion
-This project successfully demonstrates:
-Building and versioning ML models
-Deploying with FastAPI and Docker
-Publishing to GitHub Container Registry
-Verifying two model versions (v0.1 and v0.2) with consistent APIs
-Both versions return valid predictions and confirm a successful versioned deployment workflow.
+✅ Results
+
+This project successfully demonstrates: Building and versioning ML models Deploying with FastAPI and Docker Publishing to GitHub Container Registry
+Verifying two model versions (v0.1 and v0.2) with consistent APIs Both versions return valid predictions and confirm a successful versioned deployment workflow.
