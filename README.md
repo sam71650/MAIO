@@ -67,4 +67,17 @@ You’ll need:
 ```bash
 pip install -r requirements.txt
 
+Run with Docker
+
+1️⃣ Pull images
+docker pull ghcr.io/sam71650/maio:v0.1.0
+docker pull ghcr.io/sam71650/maio:v0.2.0
+
+2️⃣ Run containers
+docker run -d -p 8011:8000 --name maio_v1 ghcr.io/sam71650/maio:v0.1.0
+docker run -d -p 8012:8000 --name maio_v2 ghcr.io/sam71650/maio:v0.2.0
+
+3️⃣ Check containers
+docker ps
+
 
