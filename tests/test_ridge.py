@@ -16,7 +16,6 @@ SELECTOR_PATH = MODEL_DIR / "selector.joblib"
 # Tests
 # --------------------------
 def test_model_and_scaler_exist():
-   
     assert MODEL_PATH.exists(), f"{MODEL_PATH} not exist"
     assert SCALER_PATH.exists(), f"{SCALER_PATH} not exist"
     assert SELECTOR_PATH.exists(), f"{SELECTOR_PATH} not exist"
