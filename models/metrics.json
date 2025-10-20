@@ -1,1 +1,1 @@
-{"rmse": 53.85344583676594}
+{"rmse": 53.632794239178935, "high_risk_threshold": 214.0, "precision": 0.9, "recall": 0.28125}
