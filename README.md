@@ -69,15 +69,21 @@ pip install -r requirements.txt
 
 Run with Docker
 
-1️⃣ Pull images
+1️Pull images
 docker pull ghcr.io/sam71650/maio:v0.1.0
 docker pull ghcr.io/sam71650/maio:v0.2.0
 
-2️⃣ Run containers
+2️Run containers
 docker run -d -p 8011:8000 --name maio_v1 ghcr.io/sam71650/maio:v0.1.0
 docker run -d -p 8012:8000 --name maio_v2 ghcr.io/sam71650/maio:v0.2.0
 
-3️⃣ Check containers
+Check containers
 docker ps
 
+
+curl -s -X POST http://localhost:8011/predict -H "Content-Type: application/json" \
+-d "{\"age\":0.02,\"sex\":-0.044,\"bmi\":0.06,\"bp\":-0.03,\"s1\":-0.02,\"s2\":0.03,\"s3\":-0.02,\"s4\":0.02,\"s5\":0.02,\"s6\":-0.001}"
+
+curl -s -X POST http://localhost:8012/predict -H "Content-Type: application/json" \
+-d "{\"age\":0.02,\"sex\":-0.044,\"bmi\":0.06,\"bp\":-0.03,\"s1\":-0.02,\"s2\":0.03,\"s3\":-0.02,\"s4\":0.02,\"s5\":0.02,\"s6\":-0.001}"
 
