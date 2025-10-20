@@ -48,9 +48,9 @@ model.fit(X_train_scaled, y_train)
 # --------------------------
 y_pred = model.predict(X_test_scaled)
 
-# Compute RMSE in a compatible way for all scikit-learn versions
+# Compute RMSE manually (compatible with any scikit-learn version)
 mse = mean_squared_error(y_test, y_pred)
-rmse = float(np.sqrt(mse))
+rmse = np.sqrt(mse)
 print(f"Test RMSE: {rmse:.3f}")
 
 # Save metrics

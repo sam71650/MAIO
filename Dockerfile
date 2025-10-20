@@ -1,35 +1,24 @@
+
+
+# Dockerfile for v0.1
 # --------------------------
-# Stage 1: Build
-# --------------------------
-FROM python:3.11-slim AS build
+# Use slim Python image
+FROM python:3.11-slim
 
 # Set working directory
 WORKDIR /app
 
-# Copy dependencies file and install
-COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
+# Install dependencies
+RUN pip install --no-cache-dir fastapi uvicorn scikit-learn joblib pydantic numpy pandas
 
-# Copy the rest of the application
-COPY . .
+# Copy model folder and API code
+COPY baseline.py baseline.py
+RUN python baseline.py
+COPY predict.py predict.py
 
-# --------------------------
-# Stage 2: Runtime
-# --------------------------
-FROM python:3.11-slim
-
-WORKDIR /app
-
-# Copy everything from the build stage
-COPY --from=build /app /app
-
-# Expose FastAPI default port
+# Expose FastAPI port
 EXPOSE 8000
 
-# Healthcheck (optional)
-HEALTHCHECK --interval=30s --timeout=5s \
-  CMD curl --fail http://localhost:8000/health || exit 1
-
-# Start FastAPI app
+# Start FastAPI app with Uvicorn
 CMD ["uvicorn", "predict:app", "--host", "0.0.0.0", "--port", "8000"]
 
