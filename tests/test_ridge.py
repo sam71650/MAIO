@@ -2,6 +2,7 @@ import joblib
 import numpy as np
 from pathlib import Path
 
+
 # --------------------------
 # Paths for v0.2 artifacts
 # --------------------------
@@ -33,4 +34,5 @@ def test_model_prediction():
     X_dummy_selected = selector.transform(X_dummy_scaled)
     pred = model.predict(X_dummy_selected)
 
+    # assert prediction shape
     assert pred.shape == (1,)
