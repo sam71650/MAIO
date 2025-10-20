@@ -2,20 +2,23 @@ from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 import joblib
 import numpy as np
-
+from pathlib import Path
 
 # --------------------------
 # Config
 # --------------------------
-MODEL_PATH = "model/baseline_model.joblib"
-SCALER_PATH = "model/scaler.joblib"
-MODEL_VERSION = "v0.1"
+MODEL_DIR = Path("models")
+MODEL_PATH = MODEL_DIR / "ridge_model.joblib"
+SCALER_PATH = MODEL_DIR / "scaler.joblib"
+SELECTOR_PATH = MODEL_DIR / "selector.joblib"
+MODEL_VERSION = "v0.2"
 
-
-# Load trained model and scaler
+# --------------------------
+# Load trained model, scaler, selector
+# --------------------------
 model = joblib.load(MODEL_PATH)
 scaler = joblib.load(SCALER_PATH)
-
+selector = joblib.load(SELECTOR_PATH)
 
 # --------------------------
 # Input schema
@@ -31,7 +34,6 @@ class PatientFeatures(BaseModel):
     s4: float
     s5: float
     s6: float
-
 
 # --------------------------
 # FastAPI app
@@ -52,8 +54,14 @@ def predict(features: PatientFeatures):
             features.s1, features.s2, features.s3, features.s4,
             features.s5, features.s6
         ]])
+
+        # Preprocess
         x_scaled = scaler.transform(x)
-        prediction = model.predict(x_scaled)[0]
+        x_selected = selector.transform(x_scaled)
+
+        # Predict
+        prediction = model.predict(x_selected)[0]
+
         return {"prediction": float(prediction)}
 
     except Exception as e:
