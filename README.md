@@ -110,11 +110,13 @@ v0.1	ghcr.io/sam71650/maio:v0.1.0
 v0.2	ghcr.io/sam71650/maio:v0.2.0
 
 ✅ Pipeline and Tests 
+
 This project uses **Pull Request (PR)** and **Pull Integration (PI)** workflows for collaborative development and automated CI/CD.  
 It includes a **Release Workflow** for building and publishing Docker images.  
 Comprehensive **Unit Tests** and **Smoke Tests** ensure stability and reliability before deployment.  
 
-✅ Results
+
+✅ Conclusion
 
 This project successfully demonstrates: Building and versioning ML models Deploying with FastAPI and Docker Publishing to GitHub Container Registry
 Verifying two model versions (v0.1 and v0.2) with consistent APIs Both versions return valid predictions and confirm a successful versioned deployment workflow.
