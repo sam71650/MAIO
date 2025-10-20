@@ -12,9 +12,9 @@ WORKDIR /app
 RUN pip install --no-cache-dir fastapi uvicorn scikit-learn joblib pydantic numpy pandas
 
 # Copy model folder and API code
-COPY baseline.py baseline.py
-RUN python baseline.py
-COPY predict.py predict.py
+COPY ridge.py rige.py
+RUN python ridge.py
+COPY predictv2.py predictv2.py
 
 # Expose FastAPI port
 EXPOSE 8000
