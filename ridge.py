@@ -10,7 +10,7 @@ from sklearn.metrics import mean_squared_error
 
 # Configuration
 RANDOM_STATE = 42
-MODEL_DIR = Path("model_v0_2")
+MODEL_DIR = Path("models")
 MODEL_DIR.mkdir(exist_ok=True)
 MODEL_PATH = MODEL_DIR / "model.joblib"
 SCALER_PATH = MODEL_DIR / "scaler.joblib"
