@@ -16,14 +16,13 @@ SELECTOR_PATH = MODEL_DIR / "selector.joblib"
 # Tests
 # --------------------------
 def test_model_and_scaler_exist():
-    """Check if model, scaler, and selector files were saved."""
-    assert MODEL_PATH.exists(), f"{MODEL_PATH} does not exist"
-    assert SCALER_PATH.exists(), f"{SCALER_PATH} does not exist"
-    assert SELECTOR_PATH.exists(), f"{SELECTOR_PATH} does not exist"
+   
+    assert MODEL_PATH.exists(), f"{MODEL_PATH} not exist"
+    assert SCALER_PATH.exists(), f"{SCALER_PATH} not exist"
+    assert SELECTOR_PATH.exists(), f"{SELECTOR_PATH} not exist"
 
 
 def test_model_prediction():
-    """Check if model can make a simple prediction using scaler and selector."""
     model = joblib.load(MODEL_PATH)
     scaler = joblib.load(SCALER_PATH)
     selector = joblib.load(SELECTOR_PATH)
