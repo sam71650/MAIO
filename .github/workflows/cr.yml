@@ -5,7 +5,7 @@ name: PR / Push Workflow
 on:
   push:
     branches:
-      - v0.1
+      - v0.2
   pull_request:
     branches:
       - main
@@ -35,7 +35,7 @@ jobs:
 
       - name: Train baseline model
         run: |
-          python baseline.py
+          python ridge.py
 
       - name: Save artifacts
         uses: actions/upload-artifact@v4
