@@ -64,13 +64,56 @@ You’ll need:
 - joblib  
 - Docker  
 
-```bash
-pip install -r requirements.txt
-
-
-Run with docker
+## 🐳 Pull Images
 
 ```bash
 docker pull ghcr.io/sam71650/maio:v0.1.0
+```
+```bash
 docker pull ghcr.io/sam71650/maio:v0.2.0
+```
 
+🚀 Run Containers
+
+```bash
+docker run -d -p 8011:8000 --name maio_v1 ghcr.io/sam71650/maio:v0.1.0
+```
+If you want to run version 2 just run this :
+```bash
+docker run -d -p 8012:8000 --name maio_v2 ghcr.io/sam71650/maio:v0.2.0
+```
+
+```bash
+docker ps
+```
+
+Health check
+```bash
+curl http://localhost:8000/health
+```
+
+Prediction
+```bash
+curl -s -X POST http://localhost:8000/predict -H "Content-Type: application/json" ^
+ -d "{\"age\":0.02,\"sex\":-0.044,\"bmi\":0.06,\"bp\":-0.03,\"s1\":-0.02,\"s2\":0.03,\"s3\":-0.02,\"s4\":0.02,\"s5\":0.02,\"s6\":-0.001}"
+```
+
+✅ Results
+
+Version	Port	Health Response	Prediction Output
+v0.1	8011	{"status":"ok","model_version":"v0.1"}	{"prediction":235.9496372217627}
+v0.2	8012	{"status":"ok","model_version":"v0.2"}	{"prediction":195.78655231473178}
+
+Published Docker Images
+Version	Docker Image
+v0.1	ghcr.io/sam71650/maio:v0.1.0
+v0.2	ghcr.io/sam71650/maio:v0.2.0
+
+
+Conclusion
+This project successfully demonstrates:
+Building and versioning ML models
+Deploying with FastAPI and Docker
+Publishing to GitHub Container Registry
+Verifying two model versions (v0.1 and v0.2) with consistent APIs
+Both versions return valid predictions and confirm a successful versioned deployment workflow.
