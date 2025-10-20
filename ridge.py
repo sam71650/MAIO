@@ -1,4 +1,3 @@
-# train_v0_2.py
 import joblib
 import json
 from pathlib import Path
@@ -38,12 +37,10 @@ X_train, X_test, y_train, y_test = train_test_split(
 # --------------------------
 # Preprocessing
 # --------------------------
-# Scale features
 scaler = StandardScaler()
 X_train_scaled = scaler.fit_transform(X_train)
 X_test_scaled = scaler.transform(X_test)
 
-# Feature selection
 selector = SelectKBest(score_func=f_regression, k=TOP_K_FEATURES)
 X_train_selected = selector.fit_transform(X_train_scaled, y_train)
 X_test_selected = selector.transform(X_test_scaled)
@@ -58,7 +55,13 @@ model.fit(X_train_selected, y_train)
 # Predict
 # --------------------------
 y_pred = model.predict(X_test_selected)
-rmse = mean_squared_error(y_test, y_pred, squared=False)
+
+# Fix for older scikit-learn versions:
+try:
+    rmse = mean_squared_error(y_test, y_pred, squared=False)
+except TypeError:
+    rmse = mean_squared_error(y_test, y_pred) ** 0.5  # manual RMSE
+
 print(f"v0.2 Ridge Regression Test RMSE: {rmse:.3f}")
 
 # --------------------------
@@ -89,7 +92,8 @@ with open(METRICS_PATH, "w") as f:
 # --------------------------
 joblib.dump(model, MODEL_PATH)
 joblib.dump(scaler, SCALER_PATH)
-joblib.dump(selector, MODEL_DIR / "selector.joblib")  # save selector too
+joblib.dump(selector, MODEL_DIR / "selector.joblib")
+
 print(f"Model saved to {MODEL_PATH}")
 print(f"Scaler saved to {SCALER_PATH}")
 print(f"Feature selector saved to {MODEL_DIR / 'selector.joblib'}")
