@@ -4,6 +4,7 @@ import joblib
 import numpy as np
 from pathlib import Path
 
+
 # --------------------------
 # Config
 # --------------------------
@@ -13,12 +14,14 @@ SCALER_PATH = MODEL_DIR / "scaler.joblib"
 SELECTOR_PATH = MODEL_DIR / "selector.joblib"
 MODEL_VERSION = "v0.2"
 
+
 # --------------------------
 # Load trained model, scaler, selector
 # --------------------------
 model = joblib.load(MODEL_PATH)
 scaler = joblib.load(SCALER_PATH)
 selector = joblib.load(SELECTOR_PATH)
+
 
 # --------------------------
 # Input schema
@@ -34,6 +37,7 @@ class PatientFeatures(BaseModel):
     s4: float
     s5: float
     s6: float
+
 
 # --------------------------
 # FastAPI app
