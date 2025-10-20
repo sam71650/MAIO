@@ -40,6 +40,6 @@ jobs:
         with:
           name: model-artifacts
           path: |
-            model/baseline_model.joblib
-            model/scaler.joblib
-            model/metrics.json
+            models/ridge_model.joblib
+            models/scaler.joblib
+            models/metrics.json
